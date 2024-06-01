@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchPokemonService} from '../fetch-pokemon.service';
-import { PokemonListResponse } from '../pokemon/models.ts/pokemon.model';
-import { offset } from '@popperjs/core';
-
-
+import { Pokemon, Type } from '../pokemon/models.ts/pokemon.model';
+import { PokemonFilterComponent } from '../pokemon-filter/pokemon-filter.component';
+import { DetailPokemonComponent } from '../detail-pokemon/detail-pokemon.component';
 @Component({
   selector: 'app-pokemons-list',
   standalone: true,
-  imports: [],
+  imports: [PokemonFilterComponent, DetailPokemonComponent],
   templateUrl: './pokemons-list.component.html',
   styleUrl: './pokemons-list.component.css'
 })
 export class PokemonsListComponent implements OnInit{
-  pokemons : {name: string; url: string}[] = [];
+  pokemons : Pokemon[] = [];
+  allPokemons : Pokemon[] = [];
+
   limit : number = 100;
   offset : number = 0;
   constructor(private fetchPokemonService : FetchPokemonService){}
@@ -23,7 +24,12 @@ export class PokemonsListComponent implements OnInit{
 
   loadPokemons(): void {
     this.fetchPokemonService.getPokemons(this.limit, this.offset).subscribe(response => {
-      this.pokemons = [...this.pokemons, ...response.results];
+      response.results.forEach(pokemonSummary => {
+        this.fetchPokemonService.getPokemonsByName(pokemonSummary.name).subscribe(pokemon => {
+          this.pokemons.push(pokemon);
+          this.allPokemons.push(pokemon);
+        });
+      });
     });
   }
 
@@ -31,4 +37,17 @@ export class PokemonsListComponent implements OnInit{
     this.offset += this.limit;
     this.loadPokemons();
   }
+
+  filterByType(type: string): void {
+    if (type === '') {
+      this.pokemons = this.allPokemons;
+    } else {
+      this.fetchPokemonService.getPokemonsByType(type).subscribe(response => {
+        const filteredNames = response.pokemon.map((p: any) => p.pokemon.name);
+        this.pokemons = this.allPokemons.filter(pokemon => filteredNames.includes(pokemon.name));
+      });
+    }
+  }
+
 }
+

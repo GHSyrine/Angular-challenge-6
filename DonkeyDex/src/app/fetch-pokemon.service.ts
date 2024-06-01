@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject} from '@angular/core';
 import { Observable } from 'rxjs';
-import { EvolutionChain, Pokemon, PokemonListResponse, PokemonSpecies } from './pokemon/models.ts/pokemon.model';
+import { EvolutionChain, Pokemon, PokemonListResponse, PokemonSpecies, Type } from './pokemon/models.ts/pokemon.model';
 import { environment } from '../environments/environment';
 
 const API_URL = environment.apiUrl
@@ -39,4 +39,14 @@ getPokemonsSpecies(pokemonId : string): Observable<PokemonSpecies> {
   return this.http.get<PokemonSpecies>(url);
 }
 
+//Pour récupérer les pokémons par type
+getPokemonsByType(type: string): Observable<any> {
+  const url = `${API_URL}/type/${type}`;
+  return this.http.get<any>(url);
+}
+//Pour récupérer tous les types de Pokémon disponibles
+getTypes(): Observable<{ results: Type[] }> {
+  const url = `${API_URL}/type`;
+  return this.http.get<{ results: Type[] }>(url);
+}
 }

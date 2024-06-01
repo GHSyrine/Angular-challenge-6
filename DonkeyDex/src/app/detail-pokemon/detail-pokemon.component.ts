@@ -1,18 +1,22 @@
 import { Component } from '@angular/core';
 import { FetchPokemonService } from '../fetch-pokemon.service';
-import { Pokemon} from '../pokemon/models.ts/pokemon.model';
+import { EvolutionChain, Pokemon, PokemonSpecies} from '../pokemon/models.ts/pokemon.model';
 import { ActivatedRoute } from '@angular/router';
-
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-detail-pokemon',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './detail-pokemon.component.html',
   styleUrl: './detail-pokemon.component.css'
 })
 export class DetailPokemonComponent {
 pokemon : Pokemon | undefined;
+private routeSub: any;
+evolutionChain : EvolutionChain | undefined;
+pokemonSpecies : PokemonSpecies | undefined
+
+
 
 constructor(
   private fetchPokemonService: FetchPokemonService,
@@ -20,11 +24,22 @@ constructor(
 ){}
 
 ngOnInit(): void {
-  const name = this.route.snapshot.paramMap.get('name');
-  if (name) {
-    this.fetchPokemonService.getPokemonsByName(name).subscribe(response => {
-      this.pokemon = response;
-    });
+  this.routeSub = this.route.params.subscribe(params => {
+    const name = params['name'];
+    if (name) {
+      this.fetchPokemonService.getPokemonsByName(name).subscribe(response => {
+        this.pokemon = response;
+      }, error => console.log('Error Occurred:', error));
+    }
+  });
+}
+
+ngOnDestroy(): void {
+  if (this.routeSub) {
+    this.routeSub.unsubscribe();
   }
 }
 }
+
+
+

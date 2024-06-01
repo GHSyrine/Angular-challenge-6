@@ -8,10 +8,11 @@ export interface Ability{
 }
 export interface Type{
   slot: number;
-  type :{
+  type: {
     name: string;
-    url : string;
+    url: string;
   };
+
 }
 export interface Move{
   move :{
@@ -56,10 +57,10 @@ export interface Pokemon {
   height : number;
   weight : number;
   abilities : Ability[];
-  types : Type[];
-  moves : Move[];
+ moves : Move[];
   stats : Stat[];
   sprites : Sprites;
+  types : Type[]
 }
 export interface EvolutionChain {
   id: number;
