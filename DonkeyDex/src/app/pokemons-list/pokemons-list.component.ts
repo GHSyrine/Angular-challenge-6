@@ -48,6 +48,10 @@ export class PokemonsListComponent implements OnInit{
       });
     }
   }
+  trackByPokemonId(index: number, pokemon: Pokemon): number {
+    return pokemon.id;
+  }
 
 }
+
 

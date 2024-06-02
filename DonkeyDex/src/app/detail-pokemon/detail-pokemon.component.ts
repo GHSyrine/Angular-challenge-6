@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FetchPokemonService } from '../fetch-pokemon.service';
 import { EvolutionChain, Pokemon, PokemonSpecies} from '../pokemon/models.ts/pokemon.model';
 import { ActivatedRoute } from '@angular/router';
-import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-detail-pokemon',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './detail-pokemon.component.html',
   styleUrl: './detail-pokemon.component.css'
 })
-export class DetailPokemonComponent {
+export class DetailPokemonComponent implements OnInit{
 pokemon : Pokemon | undefined;
-private routeSub: any;
+
 evolutionChain : EvolutionChain | undefined;
 pokemonSpecies : PokemonSpecies | undefined
 
@@ -24,7 +23,7 @@ constructor(
 ){}
 
 ngOnInit(): void {
-  this.routeSub = this.route.params.subscribe(params => {
+  this.route.params.subscribe(params => {
     const name = params['name'];
     if (name) {
       this.fetchPokemonService.getPokemonsByName(name).subscribe(response => {
@@ -32,12 +31,6 @@ ngOnInit(): void {
       }, error => console.log('Error Occurred:', error));
     }
   });
-}
-
-ngOnDestroy(): void {
-  if (this.routeSub) {
-    this.routeSub.unsubscribe();
-  }
 }
 }
 
