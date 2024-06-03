@@ -3,21 +3,23 @@
     <div class="col-xl-8 offset-xl-2">
       <div class="row">
         <h1 class="mb-4">Pokedex</h1>
-        @for (pokemon of pokemons; track pokemon){
-          <a routerLink ="['/detail', pokemon.name]" ></a>
-                  <div class="col-md-6">
-                      <div class ="bg-grass card">
-              <div class ="card-body">
+        @for (pokemon of pokemons; track pokemon.id){
+        <a routerLink="/details/{{pokemon.name}}">
+          <div class="col-md-6">
+            <div class="bg-grass card">
+              <div class="card-body">
                 <div class="row">
                   <div class="col-7 col-sm-8">
-                      <h3 class ="card-title">
-                    {{pokemon.name}}</h3>
-                      @for (type of pokemon.types; track type){
-                      <span class="badge bg-grass border me-1 rounded-pill text-dark">{{type.type.name}}</span>
-                      }
+                    <h3 class="card-title">
+                      {{pokemon.name | titlecase}}</h3>
+                    @for (type of pokemon.types; track type){
+                    <span class="badge bg-grass border me-1 rounded-pill text-dark">{{type.type.name}}</span>
+                    }
                   </div>
                   <div class="col-5 col -sm-4">
-                    <img src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png" alt = "pokemonpicture" class="img-fluid">
+                    <img
+                      src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
+                      alt="pokemonpicture" class="img-fluid">
 
                   </div>
 
@@ -31,37 +33,11 @@
 
             </div>
 
-
-
-
-
-
-        </div>
-
-      }
+          </div>
+        </a>
+        }
 
       </div>
-
-
     </div>
-
-
-
-
   </div>
-
-
-
-
-
-
-
 </div>
-
-
-
-
-
-
-
-

@@ -3,10 +3,12 @@ import { FetchPokemonService} from '../fetch-pokemon.service';
 import { Pokemon, Type } from '../pokemon/models.ts/pokemon.model';
 import { PokemonFilterComponent } from '../pokemon-filter/pokemon-filter.component';
 import { DetailPokemonComponent } from '../detail-pokemon/detail-pokemon.component';
+import { RouterLink } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-pokemons-list',
   standalone: true,
-  imports: [PokemonFilterComponent, DetailPokemonComponent],
+  imports: [PokemonFilterComponent, DetailPokemonComponent, RouterLink, TitleCasePipe],
   templateUrl: './pokemons-list.component.html',
   styleUrl: './pokemons-list.component.css'
 })
