@@ -3,10 +3,10 @@
     <div class="col-xl-8 offset-xl-2">
       <div class="row">
         <h1 class="mb-4">Pokedex</h1>
-        @for (pokemon of pokemons; track pokemon.id){
+        @for (pokemon of pokemons; track pokemon){
+          <a routerLink ="['/detail', pokemon.name]" ></a>
                   <div class="col-md-6">
-                    <a routerLink="['/details', pokemon.name]" class="text-decoration-none text-dark"></a>
-            <div class ="bg-grass card">
+                      <div class ="bg-grass card">
               <div class ="card-body">
                 <div class="row">
                   <div class="col-7 col-sm-8">

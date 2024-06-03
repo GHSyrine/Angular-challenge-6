@@ -61,6 +61,7 @@ export interface Pokemon {
   stats : Stat[];
   sprites : Sprites;
   types : Type[]
+
 }
 export interface EvolutionChain {
   id: number;

@@ -12,7 +12,6 @@ import { DetailPokemonComponent } from '../detail-pokemon/detail-pokemon.compone
 })
 export class PokemonsListComponent implements OnInit{
   pokemons : Pokemon[] = [];
-  allPokemons : Pokemon[] = [];
 
   limit : number = 100;
   offset : number = 0;
@@ -27,7 +26,6 @@ export class PokemonsListComponent implements OnInit{
       response.results.forEach(pokemonSummary => {
         this.fetchPokemonService.getPokemonsByName(pokemonSummary.name).subscribe(pokemon => {
           this.pokemons.push(pokemon);
-          this.allPokemons.push(pokemon);
         });
       });
     });
@@ -38,16 +36,7 @@ export class PokemonsListComponent implements OnInit{
     this.loadPokemons();
   }
 
-  filterByType(type: string): void {
-    if (type === '') {
-      this.pokemons = this.allPokemons;
-    } else {
-      this.fetchPokemonService.getPokemonsByType(type).subscribe(response => {
-        const filteredNames = response.pokemon.map((p: any) => p.pokemon.name);
-        this.pokemons = this.allPokemons.filter(pokemon => filteredNames.includes(pokemon.name));
-      });
-    }
-  }
+
   trackByPokemonId(index: number, pokemon: Pokemon): number {
     return pokemon.id;
   }
