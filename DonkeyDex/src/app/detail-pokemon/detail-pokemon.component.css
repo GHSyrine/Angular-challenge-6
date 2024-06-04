@@ -1,0 +1,32 @@
+body{
+  font-family: var(--bs-font-sans-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
+
+
+
+.list-group-item
+{
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  border: 1px solid rgba(0,0,0,.125);
+  border-bottom-width: 1px;
+}
+ul
+{
+  list-style-type: disc;
+}
+.card
+{
+  word-wrap: break-word;
+}
+.row
+{
+  -bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+}
+

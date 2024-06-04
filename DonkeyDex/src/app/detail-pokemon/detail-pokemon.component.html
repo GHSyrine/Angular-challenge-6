@@ -1,31 +1,105 @@
-<div class="bg bg-grass py-5">
+<div class="container" _ngcintent-ftj-c7="">
+  @if(pokemon){
   <div class="container">
     <div class="row">
-      <div class="col-sm-8 offset-sm-2">
-        <div class="row">
+      <div class="col-sm-6">
+        <div class="mt-2">
+          <h1> {{pokemon.name | titlecase}}</h1>
+          @for(type of pokemon.types; track type){
+          <span class="badge bg-grass border me-1 rounded-pill text-dark">{{type.type.name}}</span>
+          }
+          <ul class="list-group list-group-flush mt-4">
+            <li class="list-group-item ">Experience <b class="float-end">{{pokemon.base_experience}}</b>
+            </li>
+            <li class="list-group-item ">Height <b class="float-end">{{pokemon.height}}</b></li>
+            <li class="list-group-item ">Weight <b class="float-end">{{pokemon.weight}}</b></li>
+          </ul>
+
           <div class="col-sm-6">
-
-            @if(pokemon){
-            <div class="mt-2">
-              <h2>{{ pokemon.name }}</h2>
-              @for (type of pokemon.types; track type){
-              <span class="badge bg-grass border me-1 rounded-pill text-dark">{{type.type.name}}</span>
-              }
-            </div>
-            <ul class="list-group list-group-flush mt-4" style="width: 20rem;">
-              <li class="list-group-item bg-transparent">Experience <b></b></li>
-              <li class="list-group-item bg-transparent">Height <b {{pokemon.height}}></b></li>
-              <li class="list-group-item bg-transparent">Weight <b {{pokemon.weight}}></b></li>
-            </ul>
-
-            <img [src]="pokemon.sprites.front_default" alt="{{ pokemon.name }}">
-            }
+            <img
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png"
+              alt="" class="img-fluid d-block mx-auto" style="width: 300px;">
           </div>
-
-
-
         </div>
       </div>
     </div>
   </div>
+  }
 </div>
+<div class="custom-shape-divider-bottom">
+  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+    <path
+      d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+      class="shape-fill"></path>
+  </svg>
+
+
+</div>
+<div class="container my-3">
+
+<!--Evolutions-->
+
+
+
+  <!--stat-->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h4 class="card-title">Stats</h4>
+      <div class="row-mt-3">
+        @if(pokemon.stats){
+        @for(stat of pokemon.stats; track stat){
+        <div class="col-sm-2">
+
+          <h6 class="text-sm-end mt-1"> {{stat.stat.name}}</h6>
+
+
+        </div>
+        <div class="col-sm-10">
+          <div class="progress" style="height: 30px">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="height: 30px;">
+              <b>{{stat.base_stat}}</b>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+        }
+        }
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!--abilities-->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h4>Abilities</h4>
+      @if(pokemon.abilities){
+      @for(ability of pokemon.abilities; track ability){
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item"> {{ability.ability.name}}</li>
+      </ul>
+      }
+
+      }
+    </div>
+
+  </div>
+
+  <!--Moves-->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h4>Moves</h4>
+      @if(pokemon.moves){
+      @for(move of pokemon.moves; track move){
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"> {{move.move.name}}</li>
+      </ul>
+      }
+      }

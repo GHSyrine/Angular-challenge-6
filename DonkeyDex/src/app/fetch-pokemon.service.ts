@@ -29,13 +29,13 @@ getPokemonsByName(name:string): Observable<Pokemon> {
   return this.http.get<Pokemon>(url);
 }
 
-getPokemonsEvolution(pokemonId : string): Observable<EvolutionChain> {
-  const url =`${API_URL}evoltion-chain/${pokemonId}`;
+getPokemonsEvolution(id : string): Observable<EvolutionChain> {
+  const url =`${API_URL}evoltion-chain/${id}`;
   return this.http.get<EvolutionChain>(url);
 }
 
-getPokemonsSpecies(pokemonId : string): Observable<PokemonSpecies> {
-  const url =`${API_URL}pokemon-species/${pokemonId}`;
+getPokemonsSpecies(id : string): Observable<PokemonSpecies> {
+  const url =`${API_URL}pokemon-species/${id}`;
   return this.http.get<PokemonSpecies>(url);
 }
 

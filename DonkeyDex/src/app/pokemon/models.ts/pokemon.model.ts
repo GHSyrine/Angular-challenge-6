@@ -1,4 +1,4 @@
-export interface Ability{
+export interface Abilities{
   ability:{
     name : string;
     url : string;
@@ -14,13 +14,13 @@ export interface Type{
   };
 
 }
-export interface Move{
+export interface Moves{
   move :{
   name : string;
   url: string;
   };
 }
-export interface Stat{
+export interface Stats{
   base_stat : number;
   effort : number;
   stat:{
@@ -56,11 +56,12 @@ export interface Pokemon {
   base_experience : number;
   height : number;
   weight : number;
-  abilities : Ability[];
- moves : Move[];
-  stats : Stat[];
+  abilities : Abilities[];
+  moves : Moves[];
+  stats : Stats[];
   sprites : Sprites;
-  types : Type[]
+  types : Type[];
+  evolutions : EvolutionDetails[]
 
 }
 export interface EvolutionChain {

@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchPokemonService } from '../fetch-pokemon.service';
-import { EvolutionChain, Pokemon, PokemonSpecies} from '../pokemon/models.ts/pokemon.model';
+import { EvolutionChain, Pokemon, Moves, PokemonSpecies, Abilities, Stats} from '../pokemon/models.ts/pokemon.model';
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
-
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-detail-pokemon',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TitleCasePipe],
   templateUrl: './detail-pokemon.component.html',
   styleUrl: './detail-pokemon.component.css'
 })
 export class DetailPokemonComponent implements OnInit{
-pokemon : Pokemon | undefined;
+pokemon : Pokemon;
 
-evolutionChain : EvolutionChain | undefined;
-pokemonSpecies : PokemonSpecies | undefined
-
-
+evolutionChain : EvolutionChain
+pokemonSpecies : PokemonSpecies
+abilities : Abilities
+stats : Stats
+moves : Moves
 
 constructor(
   private fetchPokemonService: FetchPokemonService,
