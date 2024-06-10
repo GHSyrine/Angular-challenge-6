@@ -1,4 +1,4 @@
-import { Directive, Renderer2, ElementRef, Input, SimpleChanges, OnInit } from '@angular/core';
+import { Directive, Renderer2, ElementRef, Input, OnInit } from '@angular/core';
 
 
 @Directive({
@@ -30,9 +30,23 @@ export class ColorCardDirective implements OnInit {
         color ='lightseagreen';
       break;
       case 'bug':
-        color ='pink'
+        color ='pink';
       break;
-
+      case 'psychic':
+        color ='olive';
+      break;
+      case 'normal':
+        color= 'brown';
+      break;
+      case 'poison':
+        color= 'aquamarine';
+      break;
+      case 'fighting':
+        color = 'golden';
+      break;
+      case 'ground':
+        color='silver';
+      break;
     }
     this.el.nativeElement.style.backgroundColor = color;
   }

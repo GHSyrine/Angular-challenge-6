@@ -5,13 +5,13 @@ import { DetailPokemonComponent } from '../detail-pokemon/detail-pokemon.compone
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { ColorCardDirective } from '../color-card.directive';
-import { SearchComponent } from '../search/search.component';
 import { PokemonFilterComponent } from '../pokemon-filter/pokemon-filter.component';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-pokemons-list',
   standalone: true,
-  imports: [DetailPokemonComponent, RouterLink, TitleCasePipe, ColorCardDirective, SearchComponent, PokemonFilterComponent],
+  imports: [DetailPokemonComponent, RouterLink, TitleCasePipe, ColorCardDirective, PokemonFilterComponent, HeaderComponent],
   templateUrl: './pokemons-list.component.html',
   styleUrl: './pokemons-list.component.css'
 })
@@ -21,6 +21,7 @@ export class PokemonsListComponent implements OnInit{
   //liste des Pokémon filtrés en fonction du terme de recherche
   filteredPokemons: Pokemon[] = [];
   searchTerm: string = '';
+  selectedType: string = '';
   limit: number = 100;
   offset: number = 0;
 
@@ -31,9 +32,13 @@ export class PokemonsListComponent implements OnInit{
   }
 
   loadPokemons(): void {
+    //appel au service pour obtenir la liste des pokemon
     this.fetchPokemonService.getPokemons(this.limit, this.offset).subscribe(response => {
+      // Traitement de la réponse
       response.results.forEach(pokemonSummary => {
+        //Appel au Service pour Obtenir les Détails de Chaque Pokémon:
         this.fetchPokemonService.getPokemonsByName(pokemonSummary.name).subscribe(pokemon => {
+          //Mise à Jour des Listes de Pokémon:
           this.pokemons.push(pokemon);
           this.filteredPokemons = [...this.pokemons];
         });

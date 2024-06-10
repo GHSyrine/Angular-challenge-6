@@ -29,8 +29,8 @@ getPokemonsByName(name:string): Observable<Pokemon> {
   return this.http.get<Pokemon>(url);
 }
 
-getPokemonsEvolution(id : string): Observable<EvolutionChain> {
-  const url =`${API_URL}evoltion-chain/${id}`;
+getPokemonsEvolution(id : number): Observable<EvolutionChain> {
+  const url =`${API_URL}evolution-chain/${id}`;
   return this.http.get<EvolutionChain>(url);
 }
 

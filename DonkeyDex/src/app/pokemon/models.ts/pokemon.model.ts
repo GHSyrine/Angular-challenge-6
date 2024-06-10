@@ -68,6 +68,7 @@ export interface EvolutionChain {
   id: number;
   baby_trigger_item: string | null;
   chain: EvolutionDetails;
+
 }
 
 export interface EvolutionDetails {
