@@ -1,26 +1,22 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { FetchPokemonService } from '../fetch-pokemon.service';
-import { Type } from '../pokemon/models.ts/pokemon.model';
+import { Component, Input } from '@angular/core';
+import { Pokemon } from '../pokemon/models.ts/pokemon.model';
+import { TitleCasePipe } from '@angular/common';
+import { RouterLink} from '@angular/router';
+import { ColorCardDirective } from '../color-card.directive';
+
 
 @Component({
   selector: 'app-pokemon-filter',
   standalone: true,
-  imports: [],
+  imports: [TitleCasePipe, RouterLink, ColorCardDirective],
   templateUrl: './pokemon-filter.component.html',
   styleUrl: './pokemon-filter.component.css'
 })
 export class PokemonFilterComponent {
-type : Type[] = [];
-@Output() selectedType = new EventEmitter();
+  // pour recevoir  la liste des Pokémon filtrés depuis PokemonsListComponent.
+  @Input() pokemons: Pokemon[] = [];
 
-constructor (private fetchPokemonService : FetchPokemonService){}
-
-ngOnit(){
-  this.fetchPokemonService.getTypes().subscribe(response => {
-    this.type = response.results;
-  });
-}
-onSlectedType(type: string){
-  this.selectedType.emit(type);
-}
+  trackByPokemonId(index: number, pokemon: Pokemon): number {
+    return pokemon.id;
+  }
 }

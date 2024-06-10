@@ -1,3 +1,10 @@
+
+<app-search (search) ="filterPokemon($event)"></app-search>
+
+@if(searchTerm){
+  <app-pokemon-filter [pokemons]="filteredPokemons"></app-pokemon-filter>
+}
+
 <div class="container my-5">
   <div class="row">
     <div class="col-xl-8 offset-xl-2">
@@ -6,7 +13,7 @@
         @for (pokemon of pokemons; track pokemon.id){
         <a routerLink="/details/{{pokemon.name}}">
           <div class="col-md-6">
-            <div class="bg-grass card">
+            <div class="card" [appColorCard]="pokemon.types[0].type.name">
               <div class="card-body">
                 <div class="row">
                   <div class="col-7 col-sm-8">

@@ -49,4 +49,8 @@ getTypes(): Observable<{ results: Type[] }> {
   const url = `${API_URL}/type`;
   return this.http.get<{ results: Type[] }>(url);
 }
+getAllPokemons(): Observable<Pokemon[]> {
+  return this.http.get<Pokemon[]>(`${API_URL}/pokemon?limit=1000`);
+}
+
 }

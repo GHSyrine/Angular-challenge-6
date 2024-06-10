@@ -6,13 +6,13 @@
         <div class="mt-2">
           <h1> {{pokemon.name | titlecase}}</h1>
           @for(type of pokemon.types; track type){
-          <span class="badge bg-grass border me-1 rounded-pill text-dark">{{type.type.name}}</span>
+          <span class="badge bg-light text-dark">{{type.type.name}}</span>
           }
-          <ul class="list-group list-group-flush mt-4">
-            <li class="list-group-item ">Experience <b class="float-end">{{pokemon.base_experience}}</b>
+          <ul class="list-group ">
+            <li class="list-group-item mt-2">Experience <b >{{pokemon.base_experience}}</b>
             </li>
-            <li class="list-group-item ">Height <b class="float-end">{{pokemon.height}}</b></li>
-            <li class="list-group-item ">Weight <b class="float-end">{{pokemon.weight}}</b></li>
+            <li class="list-group-item ">Height <b >{{pokemon.height}}</b></li>
+            <li class="list-group-item ">Weight <b >{{pokemon.weight}}</b></li>
           </ul>
 
           <div class="col-sm-6">
@@ -81,7 +81,7 @@
       <h4>Abilities</h4>
       @if(pokemon.abilities){
       @for(ability of pokemon.abilities; track ability){
-      <ul class="list-group list-group-flush">
+      <ul class="list-group ">
 
         <li class="list-group-item"> {{ability.ability.name}}</li>
       </ul>
@@ -98,7 +98,7 @@
       <h4>Moves</h4>
       @if(pokemon.moves){
       @for(move of pokemon.moves; track move){
-      <ul class="list-group list-group-flush">
+      <ul class="list-group">
         <li class="list-group-item"> {{move.move.name}}</li>
       </ul>
       }
