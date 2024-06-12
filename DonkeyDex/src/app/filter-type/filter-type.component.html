@@ -1,1 +1,9 @@
-<p>filter-type works!</p>
+<div class="filter-container">
+
+  <select class="form-select" (change)="onTypeSelect($event)">
+    <option value="">Choisir un type</option>
+    <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+  </select>
+  <button class="filter-button"><i class="fa fa-filter"></i></button>
+
+</div>

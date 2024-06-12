@@ -7,11 +7,13 @@ import { TitleCasePipe } from '@angular/common';
 import { ColorCardDirective } from '../color-card.directive';
 import { PokemonFilterComponent } from '../pokemon-filter/pokemon-filter.component';
 import { HeaderComponent } from '../header/header.component';
+import { FilterTypeComponent } from '../filter-type/filter-type.component';
+
 
 @Component({
   selector: 'app-pokemons-list',
   standalone: true,
-  imports: [DetailPokemonComponent, RouterLink, TitleCasePipe, ColorCardDirective, PokemonFilterComponent, HeaderComponent],
+  imports: [ FilterTypeComponent, DetailPokemonComponent, RouterLink, TitleCasePipe, ColorCardDirective, PokemonFilterComponent, HeaderComponent],
   templateUrl: './pokemons-list.component.html',
   styleUrl: './pokemons-list.component.css'
 })
@@ -41,6 +43,8 @@ export class PokemonsListComponent implements OnInit{
           //Mise à Jour des Listes de Pokémon:
           this.pokemons.push(pokemon);
           this.filteredPokemons = [...this.pokemons];
+          this.applyFilters(); // Appliquer les filters après loading pokemons
+
         });
       });
     });
@@ -57,5 +61,31 @@ export class PokemonsListComponent implements OnInit{
       this.filteredPokemons = [...this.pokemons];
     }
   }
+
+  onTypeSelected(type: string): void {
+    this.selectedType = type;
+    this.applyFilters();
+  }
+
+  applyFilters(): void {
+    // Vérifie si un type a été sélectionné ou si le champ est vide
+    if (this.selectedType === '' || this.selectedType === null) {
+      // Si aucun type n'est sélectionné, ou si le champ est vide, affiche tous les Pokémon
+      this.filteredPokemons = this.pokemons; // Aucun filtre n'est appliqué, donc affiche tous les Pokémon
+    } else {
+      // Si un type a été sélectionné
+      // Utilise la méthode filter() pour filtrer les Pokémon en fonction du type sélectionné
+      this.filteredPokemons = this.pokemons.filter(pokemon => {
+        // La méthode some() vérifie si au moins un élément du tableau répond à la condition spécifiée
+        return pokemon.types.some(pokemonType => {
+          // Vérifie si le nom du type du Pokémon correspond au type sélectionné
+          return pokemonType.type.name === this.selectedType;
+        });
+      });
+    }
+
+
+
 }
 
+}

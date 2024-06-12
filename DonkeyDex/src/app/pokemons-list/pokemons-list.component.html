@@ -1,8 +1,43 @@
+  <!-- Liste des Pokémon filtrés par mot de recherche -->
 
 <app-header (search) ="filterPokemon($event)"></app-header>
 
 @if(searchTerm){
   <app-pokemon-filter [pokemons]="filteredPokemons"></app-pokemon-filter>
+}
+
+
+<app-filter-type (typeSelected)="onTypeSelected($event)"></app-filter-type>
+@if(selectedType){
+  <!-- Liste des Pokémon filtrés par type -->
+  <div class="pokemon-cards">
+    <div class="pokemon-card">
+        @for(pokemon of filteredPokemons; track pokemon){
+      <a routerLink="/details/{{ pokemon.name }}" class="text-decoration-none">
+        <div class="row mb-4">
+          <div class="col-md-8">
+            <div class="card" [appColorCard]="pokemon.types[0].type.name">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-8">
+                    <h3 class="card-title">{{ pokemon.name | titlecase }}</h3>
+                    @for(type of pokemon.types; track type){
+                    <span  class="badge bg-grass border me-1 rounded-pill text-dark">{{ type.type.name }}</span>
+                    }
+                  </div>
+                  <div class="col-md-4">
+                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{pokemon.id}}.png" alt="pokemonpicture" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    }
+    </div>
+  </div>
+
 }
 
 <div class="container my-5">

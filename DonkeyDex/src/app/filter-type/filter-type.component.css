@@ -1,0 +1,26 @@
+.filter-container {
+  display: flex;
+  align-items: center;
+}
+
+.filter-container select {
+  flex: 1; /* Permet au select de prendre toute la largeur disponible */
+  max-width: 300px; /* Définit une largeur maximale pour le select */
+  height: 50px; /* Définit une hauteur pour le select */
+  margin-right: 10px; /* Ajoute un espacement à droite */
+}
+
+.filter-button {
+  width: 30px; /* Définit une largeur personnalisée pour le bouton */
+  height: 50px; /* Définit une hauteur personnalisée pour le bouton */
+  background-color: #fff; /* Définit la couleur de fond du bouton */
+  border: 1px solid #ccc; /* Ajoute une bordure autour du bouton */
+  border-radius: 5px; /* Arrondit les coins du bouton */
+  display: flex; /* Utilise Flexbox pour aligner le contenu */
+  justify-content: center; /* Centre l'icône horizontalement */
+  align-items: center; /* Centre l'icône verticalement */
+}
+
+.filter-button i {
+  color: #333; /* Définit la couleur de l'icône */
+}
