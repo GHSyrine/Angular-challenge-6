@@ -4,10 +4,11 @@ import { EvolutionChain, Pokemon, Moves, PokemonSpecies, Abilities, Stats, Evolu
 import { ActivatedRoute } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
+import { FormatIdPipe } from '../format-id.pipe';
 @Component({
   selector: 'app-detail-pokemon',
   standalone: true,
-  imports: [RouterLink, TitleCasePipe],
+  imports: [RouterLink, TitleCasePipe, FormatIdPipe],
   templateUrl: './detail-pokemon.component.html',
   styleUrl: './detail-pokemon.component.css'
 })

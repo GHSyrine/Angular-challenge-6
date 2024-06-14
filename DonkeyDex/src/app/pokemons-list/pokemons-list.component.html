@@ -21,7 +21,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-8">
-                    <h3 class="card-title"> #{{ pokemon.id }}{{ pokemon.name | titlecase }}</h3>
+                    <h3 class="card-title"> {{ pokemon.name | titlecase }}</h3>
                     @for(type of pokemon.types; track type){
                     <span  class="badge bg-grass border me-1 rounded-pill text-dark">{{ type.type.name }}</span>
                     }
