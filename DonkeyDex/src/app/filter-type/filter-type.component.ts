@@ -21,8 +21,9 @@ constructor(private fetchPokemonService: FetchPokemonService){}
 ngOnInit(): void{
   this.fetchPokemonService.getTypes().subscribe(response => {
     this.types = response.results.map((type: any) => type.name);
+    this.types.sort();
   });
-  
+
 }
 
 onTypeSelect(event: Event): void {

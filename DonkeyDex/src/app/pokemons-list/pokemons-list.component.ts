@@ -8,12 +8,12 @@ import { ColorCardDirective } from '../color-card.directive';
 import { PokemonFilterComponent } from '../pokemon-filter/pokemon-filter.component';
 import { HeaderComponent } from '../header/header.component';
 import { FilterTypeComponent } from '../filter-type/filter-type.component';
-
+import { FormatIdPipe } from '../format-id.pipe';
 
 @Component({
   selector: 'app-pokemons-list',
   standalone: true,
-  imports: [ FilterTypeComponent, DetailPokemonComponent, RouterLink, TitleCasePipe, ColorCardDirective, PokemonFilterComponent, HeaderComponent],
+  imports: [ FilterTypeComponent, DetailPokemonComponent, RouterLink, TitleCasePipe, ColorCardDirective, PokemonFilterComponent, HeaderComponent, FormatIdPipe],
   templateUrl: './pokemons-list.component.html',
   styleUrl: './pokemons-list.component.css'
 })
