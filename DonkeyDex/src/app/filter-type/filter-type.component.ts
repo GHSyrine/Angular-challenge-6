@@ -22,6 +22,7 @@ ngOnInit(): void{
   this.fetchPokemonService.getTypes().subscribe(response => {
     this.types = response.results.map((type: any) => type.name);
   });
+  
 }
 
 onTypeSelect(event: Event): void {

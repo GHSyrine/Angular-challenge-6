@@ -21,6 +21,7 @@ abilities : Abilities
 stats : Stats
 moves : Moves
 
+
 constructor(
   private fetchPokemonService: FetchPokemonService,
   private route : ActivatedRoute
@@ -60,7 +61,7 @@ constructor(
   private flattenEvolutionChain(chain: EvolutionDetails): EvolutionDetails[] {
     // Fonction récursive pour créer une liste plate de la chaîne d'évolution
     const evolutionDetails: EvolutionDetails[] = [];
-    
+
     const traverse = (details: EvolutionDetails) => {
       evolutionDetails.push(details);// Ajouter le pokemon actuel à la liste plate
       if (details.evolves_to) {// si le pokemon évolue en un ou plusieurs autres pokemon

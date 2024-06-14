@@ -9,6 +9,7 @@
 
 <app-filter-type (typeSelected)="onTypeSelected($event)"></app-filter-type>
 @if(selectedType){
+  <div class="filter-results">
   <!-- Liste des Pokémon filtrés par type -->
   <div class="pokemon-cards">
     <div class="pokemon-card">
@@ -20,7 +21,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-8">
-                    <h3 class="card-title">{{ pokemon.name | titlecase }}</h3>
+                    <h3 class="card-title"> #{{ pokemon.id }}{{ pokemon.name | titlecase }}</h3>
                     @for(type of pokemon.types; track type){
                     <span  class="badge bg-grass border me-1 rounded-pill text-dark">{{ type.type.name }}</span>
                     }
@@ -37,7 +38,7 @@
     }
     </div>
   </div>
-
+</div>
 }
 
 <div class="container my-5">

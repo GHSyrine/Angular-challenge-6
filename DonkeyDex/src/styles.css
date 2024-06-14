@@ -1,1 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #f0f0f0; /* Couleur de fond */
+  margin: 0; /* Supprime la marge par défaut du corps */
+  padding: 0; /* Supprime le remplissage par défaut du corps */
+  font-family: Arial, sans-serif; /* Exemple de police de caractères */
+}
